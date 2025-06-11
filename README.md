@@ -14,10 +14,11 @@ The script reads the input, resolves any `<<<<<<<`, `=======`, and `>>>>>>>` blo
 
 ## GUI
 
+The GUI now uses Tkinter's themed widgets for a modern look. It offers two tabs: **File** for selecting a file and **Paste Text** for directly pasting conflict content.
 A basic graphical interface is also available. Launch it with:
 
 ```bash
 python merge_medic_gui.py
 ```
 
-Select an input file and, optionally, an output location, then click **Clean** to produce the cleaned file.
+Use the File tab to choose input and output files, or paste text in the Paste Text tab and optionally select where to save the result. Click **Clean** to produce the cleaned file.

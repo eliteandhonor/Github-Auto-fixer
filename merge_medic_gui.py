@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox, scrolledtext
+from tkinter import filedialog, messagebox
 from pathlib import Path
 
 from merge_medic import resolve_conflicts
@@ -19,34 +20,34 @@ class MergeMedicApp(tk.Tk):
         notebook.add(self.file_frame, text="File")
         notebook.add(self.paste_frame, text="Paste Text")
         notebook.pack(fill="both", expand=True, padx=10, pady=10)
-
         self.setup_file_tab()
         self.setup_paste_tab()
-
     def setup_file_tab(self):
         self.input_path = tk.StringVar()
         self.output_path = tk.StringVar()
-
         ttk.Label(self.file_frame, text="Input File:").grid(row=0, column=0, sticky="e", padx=5, pady=5)
         ttk.Entry(self.file_frame, textvariable=self.input_path, width=40).grid(row=0, column=1, padx=5)
         ttk.Button(self.file_frame, text="Browse", command=self.browse_input).grid(row=0, column=2, padx=5)
-
         ttk.Label(self.file_frame, text="Output File:").grid(row=1, column=0, sticky="e", padx=5, pady=5)
         ttk.Entry(self.file_frame, textvariable=self.output_path, width=40).grid(row=1, column=1, padx=5)
         ttk.Button(self.file_frame, text="Browse", command=self.browse_output).grid(row=1, column=2, padx=5)
-
         ttk.Button(self.file_frame, text="Clean", command=self.clean_file).grid(row=2, column=1, pady=10)
-
     def setup_paste_tab(self):
         self.paste_output = tk.StringVar()
         self.text_input = scrolledtext.ScrolledText(self.paste_frame, width=58, height=10)
         self.text_input.grid(row=0, column=0, columnspan=3, padx=5, pady=5)
-
         ttk.Label(self.paste_frame, text="Output File:").grid(row=1, column=0, sticky="e", padx=5, pady=5)
         ttk.Entry(self.paste_frame, textvariable=self.paste_output, width=40).grid(row=1, column=1, padx=5)
         ttk.Button(self.paste_frame, text="Browse", command=self.browse_paste_output).grid(row=1, column=2, padx=5)
-
         ttk.Button(self.paste_frame, text="Clean", command=self.clean_paste).grid(row=2, column=1, pady=10)
+        self.geometry("400x150")
+        tk.Label(self, text="Input File:").grid(row=0, column=0, sticky="e", padx=5, pady=5)
+        tk.Entry(self, textvariable=self.input_path, width=40).grid(row=0, column=1, padx=5)
+        tk.Button(self, text="Browse", command=self.browse_input).grid(row=0, column=2, padx=5)
+        tk.Label(self, text="Output File:").grid(row=1, column=0, sticky="e", padx=5, pady=5)
+        tk.Entry(self, textvariable=self.output_path, width=40).grid(row=1, column=1, padx=5)
+        tk.Button(self, text="Browse", command=self.browse_output).grid(row=1, column=2, padx=5)
+        tk.Button(self, text="Clean", command=self.clean_file).grid(row=2, column=1, pady=10)
 
     def browse_input(self):
         path = filedialog.askopenfilename()
@@ -102,3 +103,4 @@ class MergeMedicApp(tk.Tk):
 if __name__ == "__main__":
     app = MergeMedicApp()
     app.mainloop()
+
